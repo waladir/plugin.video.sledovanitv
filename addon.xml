@@ -1,0 +1,51 @@
+﻿<addon id="plugin.video.sledovanitv" name="SledováníTV" provider-name="waladir" version="1.0.0">
+  <requires>
+    <import addon="xbmc.python" version="3.0.0"/>
+    <import addon="inputstream.adaptive" version="19.0.0"/>
+  </requires>
+  <extension library="main.py" point="xbmc.python.pluginsource">
+    <provides>video</provides>
+  </extension>
+  <extension library="service.py" point="xbmc.service"/>
+  <extension point="kodi.context.item">
+    <menu id="kodi.core.main">
+      <item library="iptvsc_play.py">
+          <label>Živě od začátku (SledováníTV)</label>
+          <visible>
+            Window.IsActive(TVGuide) | Window.IsActive(TVChannels)
+          </visible>
+      </item>
+      <item library="iptvsc_rec.py">
+          <label>Nahrát ve SledováníTV</label>
+          <visible>
+            Window.IsActive(TVGuide)
+          </visible>
+      </item>
+    </menu>        
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en_GB">SledováníTV</summary>
+    <summary lang="cs_CZ">SledováníTV</summary>
+    <description lang="en_GB">
+[B]Doplněk pro SledováníTV[/B]
+VOD, živé vysílání, archiv, nahrávky, vytváření playlistu a EPG pro IPTV Simple Clienta
+
+Další informace a podporu najdete na fóru www.xbmc-kodi.cz (https://www.xbmc-kodi.cz/prispevek-sledovanitv)
+    </description>
+    <description lang="cs_CZ">
+[B]Doplněk pro SledováníTV[/B]
+VOD, živé vysílání, archiv, nahrávky, vytváření playlistu a EPG pro IPTV Simple Clienta
+
+Další informace a podporu najdete na fóru www.xbmc-kodi.cz (https://www.xbmc-kodi.cz/prispevek-sledovanitv)
+    </description>
+    <platform>all</platform>
+    <source>https://github.com/waladir/plugin.video.sledovanitv</source>
+    <news>
+v1.0.0 (22.11.2026)
+- první verze doplňku
+    </news>
+    <assets>
+      <icon>icon.png</icon>
+    </assets>
+  </extension>
+</addon>
