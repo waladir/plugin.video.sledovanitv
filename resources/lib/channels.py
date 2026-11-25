@@ -284,7 +284,8 @@ class Channels:
             if channel['type'] == 'tv':
                 channelnum = channelnum + 1
                 available = channel['locked'] == 'none'
-                channels.update({ channel['id'] : { 'id' : channel['id'], 'name' : channel['name'], 'number' : channelnum, 'logo' : channel['logoUrl'], 'available' : available }})
+                timeshift = channel['timeshiftDuration'] > 0
+                channels.update({ channel['id'] : { 'id' : channel['id'], 'name' : channel['name'], 'number' : channelnum, 'logo' : channel['logoUrl'], 'timeshift': timeshift, 'timeshiftDuration': channel['timeshiftDuration'], 'parentLocked': channel['parentLocked'], 'available' : available }})
         return channels
 
     def load_channels(self):
@@ -404,7 +405,7 @@ class Channels:
             max_number = max(channel['channel_number'] for channel in self.channels.values())
         for channel_id, channel in api_channels.items():
             if channel_id in self.channels:
-                self.channels[channel_id].update({'name': channel['name'], 'number': channel['number'], 'logo': channel['logo'], 'available': channel['available']})
+                self.channels[channel_id].update({'name': channel['name'], 'number': channel['number'], 'logo': channel['logo'], 'timeshift': channel['timeshift'], 'timeshiftDuration': channel['timeshiftDuration'], 'parentLocked': channel['parentLocked'], 'available': channel['available']})
             else:
                 max_number += 1
                 channel['channel_number'] = max_number

@@ -27,7 +27,7 @@ while not monitor.abortRequested():
     if next_run < current_time:
         if monitor.waitForAbort(3):
             break
-        addon = xbmcaddon.Addon() # nová instance kvůli načtení aktuálního nastavení
+        addon = xbmcaddon.Addon()
         user = addon.getSetting('username')
         pwd = addon.getSetting('password')
         autogen = addon.getSetting('autogen') == 'true'

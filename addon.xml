@@ -1,4 +1,4 @@
-﻿<addon id="plugin.video.sledovanitv" name="SledováníTV" provider-name="waladir" version="1.0.0">
+﻿<addon id="plugin.video.sledovanitv" name="SledováníTV" provider-name="waladir" version="1.0.2">
   <requires>
     <import addon="xbmc.python" version="3.0.0"/>
     <import addon="inputstream.adaptive" version="19.0.0"/>
@@ -30,17 +30,25 @@
 [B]Doplněk pro SledováníTV[/B]
 VOD, živé vysílání, archiv, nahrávky, vytváření playlistu a EPG pro IPTV Simple Clienta
 
-Další informace a podporu najdete na fóru www.xbmc-kodi.cz (https://www.xbmc-kodi.cz/prispevek-sledovanitv)
+Další informace a podporu najdete na fóru www.xbmc-kodi.cz (https://www.xbmc-kodi.cz/prispevek-sledovanitv--13614)
     </description>
     <description lang="cs_CZ">
 [B]Doplněk pro SledováníTV[/B]
 VOD, živé vysílání, archiv, nahrávky, vytváření playlistu a EPG pro IPTV Simple Clienta
 
-Další informace a podporu najdete na fóru www.xbmc-kodi.cz (https://www.xbmc-kodi.cz/prispevek-sledovanitv)
+Další informace a podporu najdete na fóru www.xbmc-kodi.cz (https://www.xbmc-kodi.cz/prispevek-sledovanitv--13614)
     </description>
     <platform>all</platform>
     <source>https://github.com/waladir/plugin.video.sledovanitv</source>
     <news>
+v1.0.2 (25.11.2026)
+- zohlednění dostupnosti zpětného přehrávání
+- přehrávání u kanálů chráněných PINem
+
+v1.0.1 (22.11.2026)
+- maskování citlivých údajů při zapnutém logování
+- úprava URL na fórum
+
 v1.0.0 (22.11.2026)
 - první verze doplňku
     </news>

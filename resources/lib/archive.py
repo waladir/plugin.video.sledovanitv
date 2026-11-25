@@ -23,7 +23,7 @@ def list_archive(label):
     cnt = 0
     for number in sorted(channels_list.keys()):
         channel = channels_list[number]
-        if not channel.get('liveOnly', False):
+        if channel.get('timeshift', True):
             cnt += 1
             if channel_numbers == 'číslo kanálu':
                 channel_number = f"{number}. "
@@ -37,11 +37,19 @@ def list_archive(label):
             xbmcplugin.addDirectoryItem(_handle, url, list_item, True)
     xbmcplugin.endOfDirectory(_handle, cacheToDisc=False)
 
+def get_archive_days(id):
+    """Vrátí počet dnů zpět, pro které je dostupný timeshift"""
+    channel = Channels().get_channels_list()[id]
+    duration = channel.get('timeshiftDuration', 7*60*60*24)
+    oldest = (datetime.now() - timedelta(seconds=duration)).date()
+    return min((date.today() - oldest).days, 7)
+
 def list_archive_days(id, label):
-    """Výběr dne v archivu"""      
+    """Výběr dne v archivu"""
     xbmcplugin.setPluginCategory(_handle, label)
     today = date.today()
-    for i in range(8):
+    archive_days = get_archive_days(id)
+    for i in range(archive_days + 1):
         day = today - timedelta(days=i)
         day_idx = day.strftime('%w')
         if i == 0:
@@ -69,7 +77,9 @@ def list_program(id, day_min, label):
     now_ts = int(datetime.now().timestamp())
     den = (date.today() - timedelta(days=day_min)).strftime('%Y-%m-%d')
     epg = get_epg_date(channelKey = id, date = den)
-    if day_min < 7:
+    duration = Channels().get_channels_list()[id].get('timeshiftDuration', 7*60*60*24)
+    archive_days = get_archive_days(id)
+    if day_min < archive_days:
         day = date.today() - timedelta(days=day_min + 1)
         den_label = f"{day_translation_short[day.strftime('%w')]} {day.strftime('%d.%m.')}"
         url = get_url(action='list_program', id=id, day_min=day_min + 1, label=f"{label.rsplit(' / ')[0]} / {den_label}")
@@ -83,7 +93,7 @@ def list_program(id, day_min, label):
         dt_start = datetime.fromtimestamp(item_data['start'])
         dt_end = datetime.fromtimestamp(item_data['end'])
         # odfiltrovani polozek, ktere zacinaji nebo konci mimo zvoleny den, jsou v budoucnu, nebo uz nejsou dostupne pro prehrani
-        if (dt_start.strftime('%Y-%m-%d') == den or dt_end.strftime('%Y-%m-%d') == den) and item_data['start'] < now_ts and item_data['end'] > now_ts - 7*60*60*24:
+        if (dt_start.strftime('%Y-%m-%d') == den or dt_end.strftime('%Y-%m-%d') == den) and item_data['start'] < now_ts and item_data['end'] > now_ts - duration:
             item_label = (f"{day_translation_short[dt_start.strftime('%w')]} {dt_start.strftime('%d.%m. %H:%M')} - {dt_end.strftime('%H:%M')} | {item_data['title']}")
             list_item = xbmcgui.ListItem(label=item_label)
             list_item = epg_listitem(list_item=list_item, epg=item_data, icon=None)

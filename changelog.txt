@@ -1,2 +1,10 @@
+v1.0.2 (25.11.2026)
+- zohlednění dostupnosti zpětného přehrávání
+- přehrávání u kanálů chráněných PINem
+
+v1.0.1 (23.11.2026)
+- maskování citlivých údajů při zapnutém logování
+- úprava URL na fórum
+
 v1.0.0 (22.11.2026)
 - první verze doplňku
