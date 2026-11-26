@@ -38,4 +38,3 @@ def call_api(api, data):
     except Exception as error:
         log_message(f"Chyba při volání API: {error}")
         return {'err': str(error) }
-

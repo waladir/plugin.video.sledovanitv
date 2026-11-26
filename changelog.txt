@@ -1,3 +1,7 @@
+v1.0.3 (26.11.2026)
+- oprava aktualizace kanálů
+- přidání zobrazení zařízení s možností odstranění
+
 v1.0.2 (25.11.2026)
 - zohlednění dostupnosti zpětného přehrávání
 - přehrávání u kanálů chráněných PINem

@@ -14,6 +14,10 @@ nebo pokud přestane fungovat, hodnotu aktualizujte. Jde o citlivý přihlašova
 údaj uložený lokálně v nastavení Kodi; nesdílejte ho ani související stream URL.
 </p>
 <p>
+v1.0.3 (26.11.2026)<br>
+- oprava aktualizace kanálů<br>
+- přidání zobrazení zařízení s možností odstranění<br><br>
+
 v1.0.2 (25.11.2026)<br>
 - zohlednění dostupnosti zpětného přehrávání<br>
 - přehrávání u kanálů chráněných PINem<br><br>

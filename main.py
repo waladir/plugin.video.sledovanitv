@@ -18,6 +18,7 @@ from resources.lib.channels import list_channels_groups, add_channel_group, edit
 from resources.lib.recordings import list_recordings, delete_recording, list_planning_recordings, list_rec_days, future_program, add_recording
 from resources.lib.search import list_search, delete_search, program_search
 from resources.lib.profiles import list_profiles, set_active_profile
+from resources.lib.devices import list_devices, delete_device
 from resources.lib.settings import list_settings
 from resources.lib.session import Session
 
@@ -89,7 +90,12 @@ def router(paramstring):
     elif action == 'list_profiles':
         list_profiles(params.get('label'))                      
     elif action == 'set_active_profile':
-        set_active_profile(params.get('id'))                      
+        set_active_profile(params.get('id'))     
+
+    elif action == 'list_devices':
+        list_devices(params.get('label'))                      
+    elif action == 'delete_device':
+        delete_device(params.get('deviceId'))                             
 
     elif action == 'manage_channels':
         manage_channels(params.get('label'))

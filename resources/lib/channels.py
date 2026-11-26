@@ -402,7 +402,7 @@ class Channels:
             return False
         max_number = 0
         if self.channels:
-            max_number = max(channel['channel_number'] for channel in self.channels.values())
+            max_number = max(channel['number'] for channel in self.channels.values())
         for channel_id, channel in api_channels.items():
             if channel_id in self.channels:
                 self.channels[channel_id].update({'name': channel['name'], 'number': channel['number'], 'logo': channel['logo'], 'timeshift': channel['timeshift'], 'timeshiftDuration': channel['timeshiftDuration'], 'parentLocked': channel['parentLocked'], 'available': channel['available']})
